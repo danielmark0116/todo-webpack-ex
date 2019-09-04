@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack"
+    "build": "webpack --mode production",
+    "start": "webpack --mode development"
   },
   "repository": {
     "type": "git",
