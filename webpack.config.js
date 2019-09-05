@@ -26,6 +26,8 @@ module.exports = env => {
     ];
   }
 
+  const babelPlugins = ['@babel/plugin-proposal-class-properties'];
+
   return {
     mode: envValue,
     entry: './src/index.js',
@@ -34,25 +36,29 @@ module.exports = env => {
       path: path.resolve(__dirname, 'build'),
       filename: 'app.bundle.js'
     },
+    devServer: { port: 3000 },
     module: {
       rules: [
         {
           test: /\.js$/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            plugins:
+              envValue === 'development'
+                ? [...babelPlugins, 'react-hot-loader/babel']
+                : babelPlugins
+          }
         },
         {
           test: /\.s[ac]ss$/i,
           use: [
-            // Creates `style` nodes from JS strings
             'style-loader',
-            // Translates CSS into CommonJS
             {
               loader: 'css-loader',
               options: {
                 modules: true
               }
             },
-            // Compiles Sass to CSS
             'sass-loader'
           ]
         }

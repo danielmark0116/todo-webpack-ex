@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { hot } from 'react-hot-loader';
 import uuid from 'uuid';
 
 // Components
@@ -53,4 +54,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default hot(module)(App);
