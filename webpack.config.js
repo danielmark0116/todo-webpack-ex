@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = env => {
   const envValue = env || 'production';
@@ -34,7 +35,14 @@ module.exports = env => {
             ]
           }
         ]
-      }
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: 'src/index.html',
+          filename: 'index.html',
+          inject: 'body'
+        })
+      ]
     };
   } else if (envValue === 'development') {
     return {
@@ -70,7 +78,14 @@ module.exports = env => {
             ]
           }
         ]
-      }
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: 'src/index.html',
+          filename: 'index.html',
+          inject: 'body'
+        })
+      ]
     };
   }
 };
